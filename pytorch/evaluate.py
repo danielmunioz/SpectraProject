@@ -6,9 +6,9 @@ import torch.nn.functional as F
 from torchvision import transforms
 from torch.utils.data import DataLoader
 
-from datasets import Test_Dataset
-from pytorch_utils import ToTensor, get_interpolation_mode
+from SpectraProject.pytorch.datasets import Test_Dataset
 from SpectraProject.utils.evaluate_utils import plot_confusion_matrix
+from SpectraProject.pytorch.pytorch_utils import ToTensor, get_interpolation_mode
 
 
 def Evaluate(model, weights_path, samples_list_dir, data_root, interpolation_mode):
