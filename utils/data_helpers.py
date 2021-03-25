@@ -295,7 +295,7 @@ def window_divide(file_dir, item_start, item_end, window_length, temp_root, temp
   return local_list, temp_list
 
 #samples creator
-def samples_test_creator(samples_list, window_length, temp_root)
+def samples_test_creator(samples_list, window_length, temp_root):
   """Given a list of samples, calculates mini-samples for testing
   """
   temp_list = []
