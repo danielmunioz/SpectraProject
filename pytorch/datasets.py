@@ -7,7 +7,7 @@ class H5_dataset(Dataset):
   flare dataset: https://www.kaggle.com/muniozdaniel0/flares-set-240x210
   non_flare dataset: https://www.kaggle.com/muniozdaniel0/non-flares-set-200x240-repaired
   """
-  def __init__(self, hdf5_flares, hdf5_non_flares, split = 'train', transform = None, clip = True):
+  def __init__(self, hdf5_flares, hdf5_non_flares, split = 'train', transform = None, clip=True):
     self.flare_data = hdf5_flares
     self.nonflare_data = hdf5_non_flares
     self.transform = transform
@@ -59,7 +59,7 @@ class Test_Dataset(Dataset):
   def __init__(self, samples_list, transform=None, clip=True, data_root = None):
     self.local_list = samples_list
     self.transform = transform
-    self.clip = True
+    self.clip = clip
 
     #data_root: dir where the dataset is stored
     if data_root: 
