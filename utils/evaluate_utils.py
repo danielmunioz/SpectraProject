@@ -1,4 +1,6 @@
+import itertools
 import numpy as np
+import matplotlib.pyplot as plt
 
 def plot_confusion_matrix(conf_matrix, classes, normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
     if normalize:

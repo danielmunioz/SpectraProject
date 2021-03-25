@@ -56,11 +56,15 @@ class H5_dataset(Dataset):
 class Test_Dataset(Dataset):
   """Designed for testing given a list of samples of format 'item_dir, start, end, label'
   """
-  def __init__(self, samples_list, transform=None, clip=True):
+  def __init__(self, samples_list, transform=None, clip=True, data_root = None):
     self.local_list = samples_list
     self.transform = transform
     self.clip = True
-  
+
+    #data_root: dir where the dataset is stored
+    if data_root: 
+      self.local_list = [(os.path.join(data_root, item), st, en, lbl) for item, st, en, lbl in samples_list]
+      
   def __len__(self):
     return len(self.local_list)
 
