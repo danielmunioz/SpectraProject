@@ -1,0 +1,2 @@
+sunpy==2.1.2
+radiospectra==0.2.0
