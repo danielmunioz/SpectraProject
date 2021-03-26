@@ -79,7 +79,7 @@ class Test_Dataset(Dataset):
 
 
 class Field_Dataset(Dataset):
-  """Designed for inference
+  """Designed for inference on raw data
   """
   def __init__(self, files_dir, window_length, transform = None, clip=True):
     self.data = self._create_samples(files_dir, window_length)
@@ -125,3 +125,24 @@ class Field_Dataset(Dataset):
     
       big_list = big_list + local_list
     return big_list
+
+
+class Demo_Inference_Dataset(Dataset):
+  """samples?list should have the format: 'item_dir, start, end'
+  """
+  def __init__(self, samples_list, transform=None, clip=True):
+    self.local_list = samples_list
+    self.transform = transform
+    self.clip = clip
+  
+  def __len__(self):
+    len(self.local_list)
+  
+  def __getitem__(self, idx):
+    item, start, end = self.local_list[idx]
+    data = fits.open(item)[0].data[:, int(start):int(end)].astype(np.float32)
+    if self.clip:
+      data = np.clip(data, a_min=0, a_max=None)
+    if self.transform:
+      data = self.transform(data)
+    return data, item
