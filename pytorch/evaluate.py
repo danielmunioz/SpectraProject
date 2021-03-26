@@ -2,13 +2,12 @@ import os
 import matplotlib.pyplot as plt
 
 import torch
-import torch.nn.functional as F
 from torchvision import transforms
 from torch.utils.data import DataLoader
 
 from SpectraProject.pytorch.datasets import Test_Dataset
 from SpectraProject.utils.evaluate_utils import plot_confusion_matrix
-from SpectraProject.pytorch.pytorch_utils import ToTensor, get_interpolation_mode
+from SpectraProject.pytorch.pytorch_utils import get_interpolation_mode, ToTensor, softmax_preds
 
 
 def Evaluate(model, weights_path, samples_list_dir, data_root, interpolation_mode):
@@ -63,9 +62,3 @@ def model_eval(local_model, set_loader, device):
 
   final_acc = eval_accuracy_sum/items_num
   return global_preds, global_labels, final_acc
-
-
-def softmax_preds(output):
-  return F.softmax(output, dim=1).max(dim=1)[1]
-
-
